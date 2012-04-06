@@ -6,4 +6,5 @@ group :development do
   gem 'rb-fsevent'
   gem 'barista'
   gem 'compass'
+  gem 'compass_twitter_bootstrap', git: "https://github.com/vwall/compass-twitter-bootstrap.git"
 end

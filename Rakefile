@@ -29,17 +29,11 @@ namespace :assets do
   desc "Removes all compiled and bundled assets"
   task :clean do
     files = []
-    files << ['assets']
-    files << ['javascripts', 'compiled']
-    files << ['stylesheets', 'compiled']
-    files = files.map { |path| Dir[Rails.root.join('public', *[path, '*.*'])] }.flatten
-
-    puts "Removing:"
-    files.each do |file|
-      puts "  #{file.gsub(Rails.root.to_s + '/', '')}"
-    end
-
-    File.delete *files
+    files << ".sass-cache/**"
+    files << "assets/css/screen.css"
+    files << "assets/css/print.css"
+    files << "assets/css/ie.css"
+    rm_rf files
   end
 end
 
@@ -74,3 +68,5 @@ task :list do
   puts "Tasks: #{(Rake::Task.tasks - [Rake::Task[:list]]).join(', ')}"
     puts "(type rake -T for more detail)\n\n"
 end
+
+task :default => ['assets']
